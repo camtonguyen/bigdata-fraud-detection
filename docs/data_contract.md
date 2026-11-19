@@ -36,5 +36,5 @@ Hàm dùng chung: `src.models.registry.score(df) -> df` thêm 3 cột điểm v�
 
 ## 5. File kết quả cho dashboard
 
-- `reports/experiments/metrics.json` (T25): danh sách `{model, pr_auc, roc_auc, precision, recall, f1}`
-- `reports/benchmark/benchmark.csv` (T26): `rate_tx_per_s, partitions, throughput, p50_latency_ms, p95_latency_ms`
+- `results/experiments/metrics.json` (T25): danh sách `{model, pr_auc, roc_auc, precision, recall, f1}`
+- `results/benchmark/benchmark.csv` (T26): `rate_tx_per_s, partitions, throughput, p50_latency_ms, p95_latency_ms`

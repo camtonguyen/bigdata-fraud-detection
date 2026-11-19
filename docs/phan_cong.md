@@ -29,7 +29,7 @@ Kế hoạch 4 tuần: **20/11/2026 – 17/12/2026**. Bản gốc có công th�
 | T07 | Hive DDL: transactions_raw, predictions, fraud_alerts (Parquet, partition dt) | Hoà | Tố: Đối chiếu cột với data contract | T02 | 2 | 03/12 | `sql/hive/` |
 | T08 | Tải PaySim, đưa dữ liệu raw lên HDFS, nạp bảng Hive transactions_raw | Hoà | — | T04, T07 | 2 | 03/12 | `src/ingestion/` |
 | T09 | EDA trên CSV local: phân bố nhãn (~0,13%), loại giao dịch, amount, sai lệch số dư | Tố | Vy: Chốt danh sách biểu đồ cần cho báo cáo/slide | — | 1 | 26/11 | `notebooks/` |
-| T10 | Trực quan hóa EDA theo style guide | Vy | Tố: Kiểm tra lại số liệu trên biểu đồ | T09, T03 | 2 | 03/12 | `reports/figures/` |
+| T10 | Trực quan hóa EDA theo style guide | Vy | Tố: Kiểm tra lại số liệu trên biểu đồ | T09, T03 | 2 | 03/12 | `results/figures/` |
 | T11 | Module feature engineering dùng chung batch & streaming | Tố | Phúc: Viết unit test cho module features | T02 | 1–2 | 03/12 | `src/features/` |
 | T12 | Chia train/test theo step; so sánh class weight / undersampling / SMOTE | Tố | — | T11 | 2 | 03/12 | `src/models/` |
 | T13 | Baseline Logistic Regression & Random Forest (Spark MLlib) | Phúc | Tố: Review pipeline & cách đánh giá | T12 | 3 | 10/12 | `src/models/` |
@@ -44,8 +44,8 @@ Kế hoạch 4 tuần: **20/11/2026 – 17/12/2026**. Bản gốc có công th�
 | T22 | Dashboard Streamlit: luồng real-time, bảng cảnh báo, KPI (dùng dữ liệu giả theo data contract) | Phúc | Vy: Review giao diện so với mockup | T21 | 1–3 | 10/12 | `src/dashboard/` |
 | T23 | Theme/branding Streamlit, kiểm tra usability | Vy | — | T22 | 3 | 10/12 | `src/dashboard/` |
 | T24 | Trang so sánh mô hình & giám sát hiệu năng (đọc metrics.json, benchmark.csv theo data contract) | Phúc | — | T22 | 2–3 | 10/12 | `src/dashboard/pages/` |
-| T25 | Thực nghiệm so sánh LR / RF / XGB / AE / Hybrid: PR-AUC, ROC-AUC, Precision, Recall, F1 | Tố | Phúc: Chạy lại baseline trên cùng tập test | T13, T16 | 4 | 17/12 | `reports/experiments/` |
-| T26 | Đo hiệu năng: throughput, latency end-to-end theo tốc độ producer & số partition | Hoà | Phúc: Chạy producer ở nhiều tốc độ | T20 | 4 | 17/12 | `reports/benchmark/` |
+| T25 | Thực nghiệm so sánh LR / RF / XGB / AE / Hybrid: PR-AUC, ROC-AUC, Precision, Recall, F1 | Tố | Phúc: Chạy lại baseline trên cùng tập test | T13, T16 | 4 | 17/12 | `results/experiments/` |
+| T26 | Đo hiệu năng: throughput, latency end-to-end theo tốc độ producer & số partition | Hoà | Phúc: Chạy producer ở nhiều tốc độ | T20 | 4 | 17/12 | `results/benchmark/` |
 | T27 | Kiểm thử tích hợp end-to-end & sửa lỗi | Phúc | Hoà: Sửa lỗi phía hạ tầng/streaming | T20, T22, T17 | 4 | 17/12 | `tests/` |
 | T28 | Review chéo Pull Request mảng model & streaming | Hoà | — | — | 2–4 | 17/12 | `—` |
 | T29 | Viết Mở đầu (3–5 trang) | Vy | Phúc: Góp ý nội dung động lực, phạm vi | — | 1–2 | 03/12 | `report/` |

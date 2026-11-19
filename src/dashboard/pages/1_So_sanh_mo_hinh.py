@@ -6,8 +6,8 @@ import pandas as pd
 import streamlit as st
 
 st.title("So sánh mô hình")
-p = Path("reports/experiments/metrics.json")
+p = Path("results/experiments/metrics.json")
 if p.exists():
     st.dataframe(pd.DataFrame(json.loads(p.read_text())))
 else:
-    st.info("Chưa có reports/experiments/metrics.json — chạy `make train` trước.")
+    st.info("Chưa có results/experiments/metrics.json — chạy `make train` trước.")

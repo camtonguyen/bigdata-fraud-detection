@@ -53,7 +53,7 @@ Chi tiết: [docs/architecture.md](docs/architecture.md)
 ├── notebooks/               # EDA, thử nghiệm
 ├── models/registry/         # model đã huấn luyện (không commit file lớn)
 ├── tests/                   # pytest
-├── reports/                 # hình, kết quả thực nghiệm, benchmark
+├── results/                 # hình EDA, kết quả thực nghiệm, benchmark (khác report/ = quyển báo cáo)
 ├── docs/                    # kiến trúc, data contract, phân công, cài đặt, biên bản họp, sơ đồ
 ├── design/                  # mockup dashboard (Figma export)
 ├── report/                  # quyển báo cáo (Word/LaTeX + PDF)

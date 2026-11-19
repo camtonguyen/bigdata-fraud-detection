@@ -8,7 +8,7 @@ T06,CI GitHub Actions (lint + pytest),Hoà,,,T01,2,2026-12-03,.github/,Trung bì
 T07,"Hive DDL: transactions_raw, predictions, fraud_alerts (Parquet, partition dt)",Hoà,Tố,Đối chiếu cột với data contract,T02,2,2026-12-03,sql/hive/,Cao
 T08,"Tải PaySim, đưa dữ liệu raw lên HDFS, nạp bảng Hive transactions_raw",Hoà,,,"T04, T07",2,2026-12-03,src/ingestion/,Cao
 T09,"EDA trên CSV local: phân bố nhãn (~0,13%), loại giao dịch, amount, sai lệch số dư",Tố,Vy,Chốt danh sách biểu đồ cần cho báo cáo/slide,—,1,2026-11-26,notebooks/,Cao
-T10,Trực quan hóa EDA theo style guide,Vy,Tố,Kiểm tra lại số liệu trên biểu đồ,"T09, T03",2,2026-12-03,reports/figures/,Trung bình
+T10,Trực quan hóa EDA theo style guide,Vy,Tố,Kiểm tra lại số liệu trên biểu đồ,"T09, T03",2,2026-12-03,results/figures/,Trung bình
 T11,Module feature engineering dùng chung batch & streaming,Tố,Phúc,Viết unit test cho module features,T02,1–2,2026-12-03,src/features/,Cao
 T12,Chia train/test theo step; so sánh class weight / undersampling / SMOTE,Tố,,,T11,2,2026-12-03,src/models/,Cao
 T13,Baseline Logistic Regression & Random Forest (Spark MLlib),Phúc,Tố,Review pipeline & cách đánh giá,T12,3,2026-12-10,src/models/,Cao
@@ -23,8 +23,8 @@ T21,Thiết kế UI/UX dashboard: wireframe → mockup (Figma),Vy,Phúc,Góp ý 
 T22,"Dashboard Streamlit: luồng real-time, bảng cảnh báo, KPI (dùng dữ liệu giả theo data contract)",Phúc,Vy,Review giao diện so với mockup,T21,1–3,2026-12-10,src/dashboard/,Cao
 T23,"Theme/branding Streamlit, kiểm tra usability",Vy,,,T22,3,2026-12-10,src/dashboard/,Trung bình
 T24,"Trang so sánh mô hình & giám sát hiệu năng (đọc metrics.json, benchmark.csv theo data contract)",Phúc,,,T22,2–3,2026-12-10,src/dashboard/pages/,Trung bình
-T25,"Thực nghiệm so sánh LR / RF / XGB / AE / Hybrid: PR-AUC, ROC-AUC, Precision, Recall, F1",Tố,Phúc,Chạy lại baseline trên cùng tập test,"T13, T16",4,2026-12-17,reports/experiments/,Cao
-T26,"Đo hiệu năng: throughput, latency end-to-end theo tốc độ producer & số partition",Hoà,Phúc,Chạy producer ở nhiều tốc độ,T20,4,2026-12-17,reports/benchmark/,Cao
+T25,"Thực nghiệm so sánh LR / RF / XGB / AE / Hybrid: PR-AUC, ROC-AUC, Precision, Recall, F1",Tố,Phúc,Chạy lại baseline trên cùng tập test,"T13, T16",4,2026-12-17,results/experiments/,Cao
+T26,"Đo hiệu năng: throughput, latency end-to-end theo tốc độ producer & số partition",Hoà,Phúc,Chạy producer ở nhiều tốc độ,T20,4,2026-12-17,results/benchmark/,Cao
 T27,Kiểm thử tích hợp end-to-end & sửa lỗi,Phúc,Hoà,Sửa lỗi phía hạ tầng/streaming,"T20, T22, T17",4,2026-12-17,tests/,Cao
 T28,Review chéo Pull Request mảng model & streaming,Hoà,,,—,2–4,2026-12-17,—,Trung bình
 T29,Viết Mở đầu (3–5 trang),Vy,Phúc,"Góp ý nội dung động lực, phạm vi",—,1–2,2026-12-03,report/,Trung bình
