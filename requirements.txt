@@ -1,0 +1,16 @@
+pyspark==3.5.1
+kafka-python==2.0.2
+xgboost>=2.0
+tensorflow>=2.15
+scikit-learn
+imbalanced-learn
+pandas
+numpy
+pyarrow
+streamlit
+plotly
+matplotlib
+seaborn
+kaggle
+pytest
+ruff

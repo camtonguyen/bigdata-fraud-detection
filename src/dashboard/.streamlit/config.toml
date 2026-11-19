@@ -1,0 +1,7 @@
+# T23 (Vy) — chỉnh theo style guide
+[theme]
+primaryColor = "#C0392B"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F2F4F8"
+textColor = "#1F2937"
+font = "sans serif"

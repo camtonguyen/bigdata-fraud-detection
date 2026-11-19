@@ -1,0 +1,21 @@
+# Thay <username-...> bằng GitHub username thật của từng thành viên rồi bỏ dấu # đầu dòng.
+# Theo bảng phân công (docs/phan_cong.md).
+# *                      <username-to>
+# /infra/                <username-hoa>
+# /sql/                  <username-hoa>
+# /src/ingestion/        <username-hoa>
+# /src/streaming/        <username-hoa>
+# /src/models/registry.py <username-hoa>
+# /.github/workflows/    <username-hoa>
+# /src/features/         <username-to>
+# /src/models/           <username-to>
+# /notebooks/            <username-to>
+# /src/producer/         <username-phuc>
+# /src/dashboard/        <username-phuc>
+# /tests/                <username-phuc>
+# /scripts/              <username-phuc>
+# /design/               <username-vy>
+# /docs/diagrams/        <username-vy>
+# /reports/figures/      <username-vy>
+# /slides/               <username-vy>
+# /report/               <username-vy>

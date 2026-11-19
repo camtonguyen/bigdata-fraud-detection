@@ -1,0 +1,24 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+.ipynb_checkpoints/
+spark-warehouse/
+metastore_db/
+derby.log
+checkpoints/
+
+# Dữ liệu & model lớn
+data/raw/*
+data/processed/*
+!data/**/.gitkeep
+models/registry/*
+!models/registry/.gitkeep
+
+# Báo cáo nháp
+report/~$*
+*.tmp
+.DS_Store
+video/*.mp4
+
+.claude/

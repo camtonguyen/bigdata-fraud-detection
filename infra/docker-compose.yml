@@ -1,0 +1,76 @@
+# Khung hạ tầng — task T04 (Hoà, chạy thử: Phúc). Kiểm tra lại phiên bản image trước khi dùng.
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.6.1
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    ports: ["2181:2181"]
+
+  kafka:
+    image: confluentinc/cp-kafka:7.6.1
+    depends_on: [zookeeper]
+    ports: ["9092:9092"]
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENERS: INTERNAL://0.0.0.0:29092,EXTERNAL://0.0.0.0:9092
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:29092,EXTERNAL://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    environment:
+      CLUSTER_NAME: fraud
+    env_file: ./hadoop/hadoop.env
+    ports: ["9870:9870", "9000:9000"]
+    volumes: [namenode:/hadoop/dfs/name]
+
+  datanode:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    depends_on: [namenode]
+    env_file: ./hadoop/hadoop.env
+    environment:
+      SERVICE_PRECONDITION: "namenode:9870"
+    volumes: [datanode:/hadoop/dfs/data]
+
+  hive-metastore-postgresql:
+    image: bde2020/hive-metastore-postgresql:2.3.0
+
+  hive-metastore:
+    image: bde2020/hive:2.3.2-postgresql-metastore
+    command: /opt/hive/bin/hive --service metastore
+    env_file: ./hadoop/hadoop.env
+    environment:
+      SERVICE_PRECONDITION: "namenode:9870 datanode:9864 hive-metastore-postgresql:5432"
+    ports: ["9083:9083"]
+
+  hive-server:
+    image: bde2020/hive:2.3.2-postgresql-metastore
+    depends_on: [hive-metastore]
+    env_file: ./hadoop/hadoop.env
+    environment:
+      HIVE_CORE_CONF_javax_jdo_option_ConnectionURL: "jdbc:postgresql://hive-metastore/metastore"
+      SERVICE_PRECONDITION: "hive-metastore:9083"
+    ports: ["10000:10000"]
+
+  spark-master:
+    image: bitnami/spark:3.5
+    environment: [SPARK_MODE=master]
+    ports: ["8080:8080", "7077:7077"]
+    volumes: ["../:/opt/app"]
+
+  spark-worker:
+    image: bitnami/spark:3.5
+    depends_on: [spark-master]
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master:7077
+      - SPARK_WORKER_MEMORY=4G
+      - SPARK_WORKER_CORES=2
+    volumes: ["../:/opt/app"]
+
+volumes:
+  namenode:
+  datanode:
