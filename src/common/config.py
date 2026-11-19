@@ -9,7 +9,6 @@ HDFS_URI = os.getenv("HDFS_URI", "hdfs://namenode:9000")
 RAW_PATH = f"{HDFS_URI}/data/raw/paysim"
 CURATED_PATH = f"{HDFS_URI}/data/curated"
 CHECKPOINT_PATH = f"{HDFS_URI}/checkpoints"
-HIVE_METASTORE = os.getenv("HIVE_METASTORE", "thrift://hive-metastore:9083")
 
 MODEL_DIR = os.getenv("MODEL_DIR", "models/registry")
 FRAUD_THRESHOLD = float(os.getenv("FRAUD_THRESHOLD", "0.5"))

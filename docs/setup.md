@@ -6,8 +6,10 @@ Yêu cầu: Docker Desktop (≥ 8 GB RAM), Python 3.10, Java 11, tài khoản Ka
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env
-make up && make topics && make data
+make up && make topics && make data && make tables
 ```
+
+`make tables` tạo bảng Hive `fraud.*`; chạy lại sau khi streaming ghi dữ liệu mới để đăng ký partition. Derby chỉ cho 1 phiên truy vấn bảng cùng lúc.
 
 Giao diện:
 - HDFS NameNode: http://localhost:9870

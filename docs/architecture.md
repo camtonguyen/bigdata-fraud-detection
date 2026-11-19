@@ -8,7 +8,7 @@
 | Truyền tải | Apache Kafka (`transactions`, `fraud-alerts`) | Hàng đợi bền vững, phân partition theo `nameOrig` |
 | Xử lý | Spark Structured Streaming | Parse JSON, watermark, feature online, chấm điểm |
 | Mô hình | XGBoost + Deep Autoencoder (hybrid) | Phân loại có giám sát + phát hiện bất thường |
-| Lưu trữ | HDFS + Hive (Parquet, partition `dt`) | Lưu raw, predictions, alerts phục vụ truy vấn |
+| Lưu trữ | HDFS + Hive (Parquet, partition `dt`) | Lưu raw, predictions, alerts. Hive = Hive support của Spark (metastore Derby nhúng), bảng external trỏ vào Parquet trên HDFS |
 | Hiển thị | Streamlit | Cảnh báo real-time, so sánh mô hình, hiệu năng |
 
 ## Luồng batch (huấn luyện)

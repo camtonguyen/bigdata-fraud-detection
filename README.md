@@ -38,9 +38,9 @@ Chi tiết: [docs/architecture.md](docs/architecture.md)
 ```
 .
 ├── .github/                 # CI (lint + pytest), PR/issue template, CODEOWNERS
-├── infra/                   # docker-compose: Kafka, HDFS, Hive, Spark
+├── infra/                   # docker-compose: Kafka, HDFS, Spark (+ Dockerfile Spark)
 ├── scripts/                 # tải dữ liệu, khởi tạo HDFS/topic Kafka
-├── sql/hive/                # DDL bảng Hive (Parquet)
+├── sql/hive/                # DDL bảng Hive (external, Parquet trên HDFS) — chạy bằng make tables
 ├── data/                    # raw/processed (không commit), sample nhỏ để test
 ├── src/
 │   ├── common/              # config, schema, spark session
@@ -64,8 +64,9 @@ Chi tiết: [docs/architecture.md](docs/architecture.md)
 ## Chạy nhanh
 
 ```bash
-make up              # khởi động Kafka, HDFS, Hive, Spark
+make up              # khởi động Kafka, HDFS, Spark (lần đầu build image Spark)
 make data            # tải PaySim (cần Kaggle API) và đưa lên HDFS
+make tables          # tạo bảng Hive fraud.* (external, Parquet trên HDFS)
 make train           # huấn luyện offline
 make stream          # chạy Spark Structured Streaming
 make produce         # phát giao dịch vào Kafka

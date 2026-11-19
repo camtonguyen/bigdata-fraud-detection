@@ -1,4 +1,5 @@
-# Khung hạ tầng — task T04 (Hoà, chạy thử: Phúc). Kiểm tra lại phiên bản image trước khi dùng.
+# Khung hạ tầng — task T04 (Hoà, chạy thử: Phúc).
+# Hive: dùng Hive support có sẵn của Spark (metastore Derby nhúng), dữ liệu là Parquet trên HDFS → không cần container Hive riêng.
 services:
   zookeeper:
     image: confluentinc/cp-zookeeper:7.6.1
@@ -35,26 +36,6 @@ services:
       SERVICE_PRECONDITION: "namenode:9870"
     volumes: [datanode:/hadoop/dfs/data]
 
-  hive-metastore-postgresql:
-    image: bde2020/hive-metastore-postgresql:2.3.0
-
-  hive-metastore:
-    image: bde2020/hive:2.3.2-postgresql-metastore
-    command: /opt/hive/bin/hive --service metastore
-    env_file: ./hadoop/hadoop.env
-    environment:
-      SERVICE_PRECONDITION: "namenode:9870 datanode:9864 hive-metastore-postgresql:5432"
-    ports: ["9083:9083"]
-
-  hive-server:
-    image: bde2020/hive:2.3.2-postgresql-metastore
-    depends_on: [hive-metastore]
-    env_file: ./hadoop/hadoop.env
-    environment:
-      HIVE_CORE_CONF_javax_jdo_option_ConnectionURL: "jdbc:postgresql://hive-metastore/metastore"
-      SERVICE_PRECONDITION: "hive-metastore:9083"
-    ports: ["10000:10000"]
-
   spark-master:
     build: ./spark
     image: fraud-spark
@@ -63,6 +44,7 @@ services:
     volumes: ["../:/opt/app"]
 
   spark-worker:
+    build: ./spark
     image: fraud-spark
     depends_on: [spark-master]
     environment:

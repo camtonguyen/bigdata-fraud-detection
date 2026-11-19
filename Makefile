@@ -1,9 +1,9 @@
 COMPOSE = docker compose -f infra/docker-compose.yml
-SPARK_SUBMIT = $(COMPOSE) exec -e PYTHONPATH=/opt/app spark-master spark-submit \
-	--conf spark.executorEnv.PYTHONPATH=/opt/app \
+SPARK_SUBMIT = $(COMPOSE) exec -u root -e PYTHONPATH=/opt/app spark-master spark-submit \
+	--conf spark.executorEnv.PYTHONPATH=/opt/app --conf spark.jars.ivy=/tmp/.ivy2 \
 	--packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0
 
-.PHONY: up down data topics train stream produce dashboard test lint issues setup-hooks
+.PHONY: up down data topics tables train stream produce dashboard test lint issues setup-hooks
 
 up:            ## Khởi động hạ tầng
 	$(COMPOSE) up -d
@@ -17,6 +17,11 @@ data:          ## Tải PaySim và đưa lên HDFS
 
 topics:        ## Tạo topic Kafka
 	bash scripts/create_topics.sh
+
+tables:        ## Tạo bảng Hive (external, Parquet trên HDFS)
+	$(COMPOSE) exec -u root -e PYTHONPATH=/opt/app spark-master spark-sql -f /opt/app/sql/hive/01_create_tables.sql \
+		--conf spark.hadoop.javax.jdo.option.ConnectionURL='jdbc:derby:;databaseName=/opt/app/metastore_db;create=true' \
+		--conf spark.sql.warehouse.dir=hdfs://namenode:9000/user/hive/warehouse --conf spark.jars.ivy=/tmp/.ivy2
 
 train:         ## Huấn luyện offline
 	$(SPARK_SUBMIT) /opt/app/src/models/train.py

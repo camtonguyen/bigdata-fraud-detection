@@ -1,4 +1,4 @@
--- T07 (Hoà): bảng Hive lưu dạng Parquet
+-- T07 (Hoà): bảng Hive (external, Parquet) trỏ vào dữ liệu trên HDFS. Chạy: make tables
 CREATE DATABASE IF NOT EXISTS fraud;
 
 CREATE EXTERNAL TABLE IF NOT EXISTS fraud.transactions_raw (
@@ -27,3 +27,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS fraud.fraud_alerts (
 PARTITIONED BY (dt STRING)
 STORED AS PARQUET
 LOCATION 'hdfs://namenode:9000/data/curated/fraud_alerts';
+
+-- Đăng ký các partition dt mà streaming đã ghi (chạy lại `make tables` sau khi stream chạy)
+MSCK REPAIR TABLE fraud.predictions;
+MSCK REPAIR TABLE fraud.fraud_alerts;
