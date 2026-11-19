@@ -1,9 +1,9 @@
 import pytest
 
 pyspark = pytest.importorskip("pyspark")
-from pyspark.sql import SparkSession  # noqa: E402
+from pyspark.sql import SparkSession
 
-from src.features.build_features import build_features  # noqa: E402
+from src.features.build_features import build_features
 
 
 @pytest.fixture(scope="module")

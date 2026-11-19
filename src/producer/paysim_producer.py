@@ -4,7 +4,7 @@ import csv
 import json
 import time
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from kafka import KafkaProducer
 
@@ -27,7 +27,7 @@ def main() -> None:
             if args.limit and i >= args.limit:
                 break
             row["tx_id"] = str(uuid.uuid4())
-            row["event_time"] = datetime.now(timezone.utc).isoformat()
+            row["event_time"] = datetime.now(UTC).isoformat()
             producer.send(TOPIC_TX, key=row["nameOrig"].encode(), value=row)
             time.sleep(interval)
     producer.flush()

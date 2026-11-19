@@ -1,6 +1,11 @@
 """Schema PaySim dùng chung cho batch và streaming."""
-from pyspark.sql.types import (DoubleType, IntegerType, StringType,
-                               StructField, StructType)
+from pyspark.sql.types import (
+                               DoubleType,
+                               IntegerType,
+                               StringType,
+                               StructField,
+                               StructType,
+)
 
 PAYSIM_SCHEMA = StructType([
     StructField("step", IntegerType()),

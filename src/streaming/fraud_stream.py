@@ -5,7 +5,6 @@ from src.common.config import KAFKA_BOOTSTRAP, TOPIC_TX
 from src.common.schema import PAYSIM_SCHEMA
 from src.common.spark import get_spark
 from src.features.build_features import build_features
-from src.models.registry import score
 from src.streaming.sinks import write_alerts, write_predictions
 
 TX_SCHEMA = (PAYSIM_SCHEMA

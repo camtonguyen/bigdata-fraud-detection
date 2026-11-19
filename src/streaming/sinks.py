@@ -2,8 +2,13 @@
 from pyspark.sql import DataFrame
 from pyspark.sql import functions as F
 
-from src.common.config import (CHECKPOINT_PATH, CURATED_PATH, FRAUD_THRESHOLD,
-                               KAFKA_BOOTSTRAP, TOPIC_ALERTS)
+from src.common.config import (
+    CHECKPOINT_PATH,
+    CURATED_PATH,
+    FRAUD_THRESHOLD,
+    KAFKA_BOOTSTRAP,
+    TOPIC_ALERTS,
+)
 
 
 def write_predictions(df: DataFrame):
