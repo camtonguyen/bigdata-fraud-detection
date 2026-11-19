@@ -1,5 +1,5 @@
 """T13 (Phúc, review: Tố) — Logistic Regression & Random Forest với Spark MLlib, có class weight."""
-from pyspark.ml import Pipeline
+from pyspark.ml import Estimator, Pipeline
 from pyspark.ml.classification import LogisticRegression, RandomForestClassifier
 from pyspark.ml.feature import StandardScaler, VectorAssembler
 from pyspark.sql import functions as F
@@ -16,6 +16,7 @@ def add_class_weight(df, label: str = "isFraud"):
 def make_pipeline(kind: str = "lr") -> Pipeline:
     assembler = VectorAssembler(inputCols=FEATURE_COLS, outputCol="raw_features")
     scaler = StandardScaler(inputCol="raw_features", outputCol="features")
+    clf: Estimator
     if kind == "lr":
         clf = LogisticRegression(labelCol="isFraud", weightCol="class_weight", maxIter=100)
     else:

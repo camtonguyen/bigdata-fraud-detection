@@ -1,2 +1,2 @@
 #!/bin/sh
-ruff check src tests && python -m pytest -q
+ruff check src tests && mypy src --ignore-missing-imports && python -m pytest -q

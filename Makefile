@@ -30,6 +30,7 @@ dashboard:
 	streamlit run src/dashboard/app.py
 
 test:
+	mypy src --ignore-missing-imports
 	pytest -q
 
 lint:
