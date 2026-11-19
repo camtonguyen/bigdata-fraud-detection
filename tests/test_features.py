@@ -1,3 +1,5 @@
+import subprocess
+
 import pytest
 
 pyspark = pytest.importorskip("pyspark")
@@ -8,6 +10,8 @@ from src.features.build_features import build_features
 
 @pytest.fixture(scope="module")
 def spark():
+    if subprocess.run(["java", "-version"], check=False, capture_output=True).returncode != 0:
+        pytest.skip("Java not installed (CI runs this test)")
     s = SparkSession.builder.master("local[1]").appName("test").getOrCreate()
     yield s
     s.stop()
