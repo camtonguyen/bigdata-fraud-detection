@@ -1,5 +1,5 @@
-pyspark==3.5.1
-kafka-python==2.0.2
+pyspark==3.5.8
+kafka-python==2.3.2
 xgboost>=2.0
 tensorflow>=2.15
 scikit-learn
@@ -14,3 +14,5 @@ seaborn
 kaggle
 pytest
 ruff
+pillow>=13
+keras>=3.15
