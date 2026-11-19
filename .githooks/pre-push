@@ -1,0 +1,2 @@
+#!/bin/sh
+ruff check src tests && python -m pytest -q

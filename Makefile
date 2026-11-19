@@ -2,7 +2,7 @@ COMPOSE = docker compose -f infra/docker-compose.yml
 SPARK_SUBMIT = $(COMPOSE) exec spark-master spark-submit \
 	--packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0
 
-.PHONY: up down data topics train stream produce dashboard test lint issues
+.PHONY: up down data topics train stream produce dashboard test lint issues setup-hooks
 
 up:            ## Khởi động hạ tầng
 	$(COMPOSE) up -d
@@ -37,3 +37,6 @@ lint:
 
 issues:        ## Tạo GitHub issue từ .github/tasks.csv (cần gh CLI)
 	bash scripts/create_issues.sh
+
+setup-hooks:     ## Bật git hook lint/test trước commit/push
+	git config core.hooksPath .githooks

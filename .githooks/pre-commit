@@ -1,0 +1,2 @@
+#!/bin/sh
+ruff check src tests || { echo "ruff failed: fix with ruff check --fix src tests"; exit 1; }
