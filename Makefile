@@ -3,7 +3,7 @@ SPARK_SUBMIT = $(COMPOSE) exec -u root -e PYTHONPATH=/opt/app spark-master spark
 	--conf spark.executorEnv.PYTHONPATH=/opt/app --conf spark.jars.ivy=/tmp/.ivy2 \
 	--packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0
 
-.PHONY: up down data topics tables train stream produce dashboard test lint issues setup-hooks
+.PHONY: up down data topics tables train stream produce dashboard test lint issues setup setup-hooks
 
 up:            ## Khởi động hạ tầng
 	$(COMPOSE) up -d
@@ -44,6 +44,10 @@ lint:
 
 issues:        ## Tạo GitHub issue từ .github/tasks.csv (cần gh CLI)
 	bash scripts/create_issues.sh
+
+setup:           ## Tạo .venv, cài requirements + bật git hook
+	python3 -m venv .venv && .venv/bin/pip install -q -r requirements.txt
+	$(MAKE) setup-hooks
 
 setup-hooks:     ## Bật git hook lint/test trước commit/push
 	git config core.hooksPath .githooks

@@ -1,2 +1,4 @@
 #!/bin/sh
+[ -d .venv/bin ] && PATH="$PWD/.venv/bin:$PATH"
+command -v ruff >/dev/null || { echo "thiếu 'ruff': chạy 'make setup'"; exit 1; }
 ruff check src tests || { echo "ruff failed: fix with ruff check --fix src tests"; exit 1; }

@@ -1,2 +1,10 @@
 #!/bin/sh
-ruff check src tests && mypy src --ignore-missing-imports && python -m pytest -q
+# Dùng venv của repo nếu có; thiếu công cụ thì báo rõ cách cài.
+[ -d .venv/bin ] && PATH="$PWD/.venv/bin:$PATH"
+for t in ruff mypy pytest; do
+  command -v $t >/dev/null || { echo "thiếu '$t': chạy 'make setup'"; exit 1; }
+done
+ruff check src tests && mypy src --ignore-missing-imports || exit 1
+python -m pytest -q; rc=$?
+[ $rc -eq 5 ] && { echo "pytest: không có test nào chạy (thiếu pyspark? chạy 'make setup')"; exit 1; }
+exit $rc
