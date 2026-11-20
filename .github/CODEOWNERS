@@ -1,21 +1,19 @@
-# Thay <username-...> bằng GitHub username thật của từng thành viên rồi bỏ dấu # đầu dòng.
-# Theo bảng phân công (docs/phan_cong.md).
-# *                      <username-to>
-# /infra/                <username-hoa>
-# /sql/                  <username-hoa>
-# /src/ingestion/        <username-hoa>
-# /src/streaming/        <username-hoa>
-# /src/models/registry.py <username-hoa>
-# /.github/workflows/    <username-hoa>
-# /src/features/         <username-to>
-# /src/models/           <username-to>
-# /notebooks/            <username-to>
-# /src/producer/         <username-phuc>
-# /src/dashboard/        <username-phuc>
-# /tests/                <username-phuc>
-# /scripts/              <username-phuc>
-# /design/               <username-vy>
-# /docs/diagrams/        <username-vy>
-# /results/figures/      <username-vy>
-# /slides/               <username-vy>
-# /report/               <username-vy>
+*                      camtonguyen
+/infra/                quanghoath
+/sql/                  quanghoath
+/src/ingestion/        quanghoath
+/src/streaming/        quanghoath
+/src/models/registry.py quanghoath
+/.github/workflows/    quanghoath
+/src/features/         camtonguyen
+/src/models/           camtonguyen
+/notebooks/            camtonguyen
+/src/producer/         hdphuc201
+/src/dashboard/        hdphuc201
+/tests/                hdphuc201
+/scripts/              hdphuc201
+/design/               tuongvy20pmc
+/docs/diagrams/        tuongvy20pmc
+/results/figures/      tuongvy20pmc
+/slides/               tuongvy20pmc
+/report/               tuongvy20pmc
