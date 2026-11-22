@@ -73,7 +73,7 @@ make produce         # phát giao dịch vào Kafka
 make dashboard       # mở dashboard tại http://localhost:8501
 ```
 
-Xem [docs/setup.md](docs/setup.md).
+Cần Python 3.10–3.12 và Java 11; `make setup` tự chọn Python phù hợp và báo lỗi cách xử lý. Tùy chọn riêng từng người (`Makefile.local`), lỗi thường gặp và cách chạy test bằng Docker: xem [docs/setup.md](docs/setup.md).
 
 ## Quy ước Git
 

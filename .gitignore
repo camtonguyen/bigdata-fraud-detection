@@ -22,3 +22,5 @@ report/~$*
 video/*.mp4
 
 .claude/
+
+Makefile.local

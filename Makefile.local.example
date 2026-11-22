@@ -1,0 +1,3 @@
+# Sao chép thành Makefile.local (đã được .gitignore) để ghi đè cấu hình máy của bạn.
+# PY = /opt/homebrew/bin/python3.12
+# export JAVA_HOME = /opt/homebrew/opt/openjdk@11
