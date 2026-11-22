@@ -1,4 +1,6 @@
+import os
 import subprocess
+import sys
 
 import pytest
 
@@ -12,6 +14,8 @@ from src.features.build_features import build_features
 def spark():
     if subprocess.run(["java", "-version"], check=False, capture_output=True).returncode != 0:
         pytest.skip("Java not installed (CI runs this test)")
+    # Worker dùng đúng Python của venv, tránh lệch phiên bản với python3 mặc định của máy
+    os.environ.setdefault("PYSPARK_PYTHON", sys.executable)
     s = SparkSession.builder.master("local[1]").appName("test").getOrCreate()
     yield s
     s.stop()
